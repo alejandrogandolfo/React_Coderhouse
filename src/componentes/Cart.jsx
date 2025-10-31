@@ -1,5 +1,5 @@
 import { useCart } from "../context/CartContext";
-import { Link } from "react-router-dom";  // ✅ import necesario
+import { Link } from "react-router-dom";
 
 export const Cart = () => {
   const { cart, totalPrice, removeItem, clearCart } = useCart();

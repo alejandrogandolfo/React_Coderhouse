@@ -24,11 +24,11 @@ export const CheckoutForm = () => {
     };
 
     try {
-      console.log("Enviando orden:", orden); // 👀 debug
+      console.log("Enviando orden:", orden);
       const docRef = await addDoc(collection(db, "ordenes"), orden);
       console.log("Orden generada con ID:", docRef.id);
       setOrdenId(docRef.id);
-      clearCart(); // ✅ vacía carrito
+      clearCart(); 
     } catch (err) {
       console.error("Error al generar la orden:", err);
       setError("Hubo un problema al procesar la compra. Intenta de nuevo.");

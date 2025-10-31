@@ -1,3 +1,6 @@
+
+//YA NO SE USA, YA QUE SUBI TODO A FIREBASE//
+
 export const productos = [
   { 
     id: "1", 

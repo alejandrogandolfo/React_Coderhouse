@@ -4,7 +4,7 @@ import { ItemListContainer } from "./componentes/ItemListContainer";
 import { ItemDetailContainer } from "./componentes/ItemDetailContainer";
 import { Routes, Route } from "react-router-dom";
 import { Cart } from "./componentes/Cart";
-import { CheckoutForm } from "./componentes/CheckoutForm"; // ✅ Importar el formulario
+import { CheckoutForm } from "./componentes/CheckoutForm";
 
 function App() {
   return (
@@ -30,7 +30,7 @@ function App() {
         <Route path="/cart" element={<Cart />} />
 
         {/* checkout */}
-        <Route path="/checkout" element={<CheckoutForm />} /> {/* ✅ Nueva ruta */}
+        <Route path="/checkout" element={<CheckoutForm />} />
 
         {/* ruta 404 */}
         <Route path="*" element={<h2>404 - Página no encontrada</h2>} />

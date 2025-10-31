@@ -34,7 +34,10 @@ El objetivo es simular una tienda online para usuarios celiacos, donde se pueden
 
 ## Ejemplo en base de Firebase de como se ve la base de datos con una compra
 ![Base datos Firebase](image-2.png)
+![Base de datos con los productos](image-3.png)
 
+## las imagenes, las subi primero en cloudinary, y luego copie la url en un parametro imagen en firebase
+![imagenes en cloudinary](image-4.png)
 
 ## Autor
 

@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { useParams, Link } from "react-router-dom";
-import { productos } from "../data";
+import { collection, getDocs, query, where } from "firebase/firestore";
+import { db } from "../firebase/config";
 import "./ItemListContainer.css";
 
 export const ItemListContainer = ({ saludo }) => {
@@ -8,17 +9,16 @@ export const ItemListContainer = ({ saludo }) => {
   const { categoryId } = useParams();
 
   useEffect(() => {
-    const getData = new Promise((resolve) => {
-      setTimeout(() => resolve(productos), 1000);
-    });
+    const productosRef = collection(db, "productos");
+    const q = categoryId
+      ? query(productosRef, where("categoria", "==", categoryId))
+      : productosRef;
 
-    getData.then((res) => {
-      if (categoryId) {
-        setItems(res.filter((prod) => prod.categoria === categoryId));
-      } else {
-        setItems(res);
-      }
-    });
+    getDocs(q)
+      .then((res) => {
+        setItems(res.docs.map((doc) => ({ id: doc.id, ...doc.data() })));
+      })
+      .catch((error) => console.error("Error cargando productos:", error));
   }, [categoryId]);
 
   return (
@@ -26,14 +26,14 @@ export const ItemListContainer = ({ saludo }) => {
       <h1>{saludo}</h1>
       <div className="product-list">
         {items.map((prod) => (
-            <div key={prod.id} className="product-card">
-                <img src={prod.imagen} alt={prod.nombre} />
-                <h3>{prod.nombre}</h3>
-                <p>Precio: ${prod.precio}</p>
-                <Link to={`/item/${prod.id}`}>Ver detalle</Link>
-            </div>
+          <div key={prod.id} className="product-card">
+            <img src={prod.imagen} alt={prod.nombre} />
+            <h3>{prod.nombre}</h3>
+            <p>Precio: ${prod.precio}</p>
+            <Link to={`/item/${prod.id}`}>Ver detalle</Link>
+          </div>
         ))}
       </div>
     </div>
-     );
+  );
 };
